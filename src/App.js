@@ -12,7 +12,7 @@ async function generateRSAKeyPair() {
         name: 'RSASSA-PKCS1-v1_5',
         modulusLength: 2048,
         publicExponent: new Uint8Array([0x01, 0x00, 0x01]), // 65537
-        hash: 'SHA-512',
+        hash: 'SHA-256',
       },
       true,
       ['sign', 'verify']
@@ -61,7 +61,7 @@ async function signText(text, priv) {
     const privateKey = await window.crypto.subtle.importKey(
       'pkcs8',
       pemToArrayBuffer(priv),
-      { name: 'RSASSA-PKCS1-v1_5', hash: 'SHA-512' },
+      { name: 'RSASSA-PKCS1-v1_5', hash: 'SHA-256' },
       false,
       ['sign']
     );

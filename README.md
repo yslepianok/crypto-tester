@@ -8,7 +8,9 @@ target:
 in folder keys-browser keypair that was generated in browser (nothing insecure)
 
 This command converts base64 signature to binary signature(Windows):
-certutil -decode .\text.txt.signature.base64.1 .\text.txt.signature.verify.1
+certutil -decode .\signature.base64 .\signature.binary
+Unix:
+base64 -d -i ./signature.base64 -o ./signature.binary
 
 This command verifies binary signature:
-openssl dgst -sha512 -verify .\public.pem -signature .\text.txt.signature.verify.1 .\text.txt
+openssl dgst -sha256 -verify .\public.pem -signature .\signature.binary .\text.txt
